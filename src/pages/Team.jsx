@@ -21,15 +21,15 @@ const leadershipData = [
     name: 'Gangadharan Raju',
     role: 'Faculty-in-Charge',
     subRole: 'Professor',
-    email: 'gangadharanr@iith.ac.in',
+    email: 'fic.cw@iith.ac.in',
     img: GangadharanRajuImg,
-    link: 'https://people.iith.ac.in/gangadharanr/'
+    link: ' https://iith.ac.in/mae/gangadharanr/'
   },
   {
     name: 'Malla Seetarami Naidu',
     role: 'Workshop-in-Charge',
     subRole: 'Senior Technical Officer',
-    email: 'seetaram.malla@admin.iith.ac.in',
+    email: 'office.cw@iith.ac.in',
     img: sto1Img,
     link: null
   }
