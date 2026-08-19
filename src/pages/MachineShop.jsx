@@ -1,5 +1,14 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, Zap, Layers, Printer, ChevronsDown } from 'lucide-react';
+import { ArrowLeft, ChevronsDown } from 'lucide-react';
+import machineImg from '../img/machine/UniversalMillingMachine.png';
+import light from '../img/machine/LightDutyLathe.png';
+import hmt from '../img/machine/HMTLathe.png';
+import shaper from '../img/machine/ShaperMachine.png';
+import radial from '../img/machine/RadialDrillingMachine.png';
+import surface from '../img/machine/SurfaceGrindingMachine.png';
+import cylindrical from '../img/machine/CylindricalGrindingMachine.png';
+import slotting from '../img/machine/slotting.jpg';
+
 
 const machinesData = [
   {
@@ -13,7 +22,7 @@ const machinesData = [
       'Speed range: 45-2000 rpm (12 speeds)',
       'Max safe weight: 400 kg'
     ],
-    icon: Layers,
+    image: machineImg,
     imageAlt: 'Universal Milling Machine'
   },
   {
@@ -27,7 +36,7 @@ const machinesData = [
       'Taper turning attachment',
       '3 jaw, 4 jaw chuck & collet chucks available'
     ],
-    icon: Zap,
+    image: hmt,
     imageAlt: 'HMT Lathe Machine'
   },
   {
@@ -41,7 +50,7 @@ const machinesData = [
       '4 jaw chuck size: 8 inch',
       '3 jaw self centering chuck size: 6 inch'
     ],
-    icon: Zap,
+    image: light,
     imageAlt: 'Light Duty Lathe Machine'
   },
   {
@@ -54,7 +63,7 @@ const machinesData = [
       'Vertical travel of table: 305 mm',
       'Longitudinal travel of table: 405 mm'
     ],
-    icon: Layers,
+    image: shaper,
     imageAlt: 'Shaper Machine'
   },
   {
@@ -68,7 +77,7 @@ const machinesData = [
       'Speed range: 40-1800 rpm',
       'Taper: MT5 (female)'
     ],
-    icon: Zap,
+    image: radial,
     imageAlt: 'Radial Drilling Machine'
   },
   {
@@ -83,7 +92,7 @@ const machinesData = [
       'Wheel head vertical movement: 250 mm',
       'Speed of wheel: 2800 rpm'
     ],
-    icon: Layers,
+    image: surface,
     imageAlt: 'Surface Grinding Machine'
   },
   {
@@ -98,7 +107,7 @@ const machinesData = [
       'Max weight of workpiece: 60 kg',
       'Table speed: 0.05-6.0 m/min'
     ],
-    icon: Zap,
+    image: cylindrical,
     imageAlt: 'Cylindrical Grinding Machine'
   },
   {
@@ -111,12 +120,12 @@ const machinesData = [
       'Cross travel: 200 mm',
       'Longitudinal travel: 110 mm'
     ],
-    icon: Layers,
+    image: slotting,
     imageAlt: 'Slotting Machine'
   }
 ];
 
-const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
+const MachineShop = ({ onBack, Navbar, Footer, onNavigate }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -156,7 +165,6 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
           {/* Machines List */}
           <div className="bg-white p-6 sm:p-8 lg:p-12 rounded-3xl shadow-lg">
             {machinesData.map((machine, index) => {
-              const Icon = machine.icon;
               const isEven = index % 2 === 0;
 
               return (
@@ -164,11 +172,13 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                   {/* Image/Visual Section */}
                   <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                    <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl h-72 lg:h-64 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-center px-6">
-                        <Icon className="w-20 h-20 text-orange-600 mx-auto mb-3" />
-                        <p className="text-gray-600 font-semibold">{machine.imageAlt}</p>
+                    <div className="bg-slate-50 rounded-2xl h-80 flex flex-col items-center justify-center p-8 border border-slate-100 hover:border-orange-200 transition-all group">
+                      <div className="relative flex items-center justify-center w-full h-32">
+                         <div className="absolute -inset-4 bg-orange-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         <img src={machine.image} alt={machine.imageAlt} className="max-w-full max-h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300" />
                       </div>
+                      <p className="mt-6 text-slate-400 font-medium uppercase tracking-widest text-xs">Equipment</p>
+                      <p className="text-slate-800 font-bold text-center mt-1">{machine.imageAlt}</p>
                     </div>
                   </div>
 
@@ -240,4 +250,4 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
   );
 };
 
-export default AdvancedManu;
+export default MachineShop;

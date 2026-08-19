@@ -35,6 +35,7 @@ import hydraulicsImg from './img/hydralic.png';
 import fittingImg from './img/fittingshop.png';
 import electricalImg from './img/electrical.png';
 import diyImg from './img/diy.png';
+import safetyManualPdf from './pdf/Central_Workshop_Safety_Manual.pdf';
 
 // --- Components ---
 
@@ -51,15 +52,18 @@ const Navbar = ({ onNavigate }) => {
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'Facilities', href: '#facilities' },
-    { name: 'Training', href: '#training' },
     { name: 'Team', href: '#team' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'Events', href: '#events' },
+    { name: 'Work Request', href: 'https://cws.iith.ac.in/workflow/' },
     { name: 'Contact', href: '#contact' },
   ];
 
   const handleNavClick = (event, href) => {
     setIsOpen(false);
+    if (href.startsWith('http')) {
+      return; // Let the browser natively handle external links
+    }
     if (!onNavigate) return;
     event.preventDefault();
     onNavigate(href);
@@ -69,14 +73,18 @@ const Navbar = ({ onNavigate }) => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-1' : 'bg-slate-900 py-1'}`}>
       <div className="w-full px-6 lg:px-12 xl:px-20">
         <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, '#home')}
+            className="flex items-center space-x-2"
+          >
             <div className="bg-orange-600 p-2 rounded-lg">
               <Settings className="text-white w-6 h-6 animate-spin-slow" />
             </div>
             <span className={`font-bold text-lg sm:text-xl tracking-tight ${scrolled ? 'text-gray-900' : 'text-white'}`}>
               Central Workshop <span className="text-orange-600">IITH</span>
             </span>
-          </div>
+          </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex space-x-8">
@@ -85,6 +93,7 @@ const Navbar = ({ onNavigate }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(event) => handleNavClick(event, link.href)}
+                {...(link.href.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className={`text-sm font-medium transition-colors hover:text-orange-500 ${scrolled ? 'text-gray-700' : 'text-gray-100'}`}
               >
                 {link.name}
@@ -110,6 +119,7 @@ const Navbar = ({ onNavigate }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(event) => handleNavClick(event, link.href)}
+                {...(link.href.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-600 hover:bg-gray-50 rounded-md"
               >
                 {link.name}
@@ -237,7 +247,7 @@ const FacilityCard = ({ title, items, imageText, image, onClick }) => (
   <div onClick={onClick} className="overflow-hidden rounded-2xl bg-white shadow-lg group cursor-pointer hover:shadow-2xl transition-all duration-300 text-left">
     <div className="h-48 bg-gray-200 flex items-center justify-center relative overflow-hidden">
       {image && (
-        <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <img src={image} alt={title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
       )}
       <div className={`absolute inset-0 transition-colors duration-300 ${image ? 'bg-slate-900/30 group-hover:bg-slate-900/10' : 'bg-orange-900/10 group-hover:bg-orange-900/0'}`}></div>
       {!image && <span className="text-gray-400 font-bold text-lg uppercase tracking-widest relative z-10">{imageText}</span>}
@@ -374,18 +384,18 @@ export default function App() {
       <Navbar onNavigate={handleNavigate} />
       {/* Hero Section */}
 
-      <header id="home" className="relative min-h-screen flex items-center overflow-hidden bg-slate-900 pt-12 md:pt-16">
+      <header id="home" className="hero-header relative min-h-screen flex items-center overflow-hidden bg-slate-900 pt-12 md:pt-16">
         <GearCanvas />
-        <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-6 lg:px-12 xl:px-20">
+      <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-6 lg:px-12 xl:px-20 pb-10 sm:pb-0">
           <div className="text-center lg:text-left -translate-y-6 lg:-translate-y-8">
             <div className="inline-flex items-center space-x-2 bg-orange-600/10 border border-orange-500/20 px-3 py-1 rounded-full text-orange-400 text-sm font-medium mb-6 animate-bounce lg:ml-16">
               <Zap size={14} />
               <span>Maker Space</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-14 xl:mb-20 sm:max-w-3xl lg:max-w-4xl mx-auto lg:mx-0">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-8 sm:mb-14 xl:mb-20 sm:max-w-3xl lg:max-w-4xl mx-auto lg:mx-0">
               Empowering <span className="text-orange-500">Innovation</span> Through Engineering.
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-300 mb-10 leading-relaxed max-w-4xl mx-auto lg:mx-0">
+          <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-4xl mx-auto lg:mx-0">
               The Central Workshop at IIT Hyderabad is a state-of-the-art facility supporting academic research and 
               student projects with precision manufacturing and hands-on training.
             </p>
@@ -402,7 +412,7 @@ export default function App() {
                 href="https://cws.iith.ac.in/workflow/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative z-20 px-4 sm:px-5 py-2.5 sm:py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all backdrop-blur-sm flex items-center justify-center border border-white/10 text-[11px] sm:text-xs"
+                className="relative z-20 px-4 sm:px-5 py-2.5 sm:py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all backdrop-blur-sm flex items-center justify-center border border-white/10 text-[11px] sm:text-xs animate-border-glow"
               >
                 Submit Work Request
               </a>
@@ -411,8 +421,8 @@ export default function App() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 -ml-4 lg:-ml-12 animate-bounce flex flex-col items-center">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2 mb-2">
+      <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-1 mb-1">
             <div className="w-1 h-2 bg-white rounded-full"></div>
           </div>
           <span className="text-white/60 text-xs font-medium tracking-wide">Scroll down to explore</span>
@@ -424,10 +434,10 @@ export default function App() {
         <div className="w-full max-w-screen-2xl mx-auto px-6 lg:px-12 xl:px-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 text-center">
             {[
-              { label: 'Machines', value: '50+' },
-              { label: 'Students/Year', value: '1000+' },
-              { label: 'Total Area', value: '10k sqft' },
-              { label: 'Research Projects', value: '200+' },
+              { label: 'Machines', value: '40+' },
+              { label: 'Students/Year', value: '200+' },
+              { label: 'Total Area', value: '4k sqft' },
+              { label: 'Work Requests', value: '1000+' },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-black text-orange-600 mb-1">{stat.value}</p>
@@ -470,7 +480,7 @@ export default function App() {
 
            <FacilityCard 
             title="Advanced Manufacturing" 
-            items={["3-Axis CNC Milling", "CNC Turning Center", "EDM Wire Cut", "3D Printing Lab"]}
+            items={["3-Axis CNC Milling", "CNC Turning Center", "", ""]}
             imageText="Precision CNC"
             image={advancedManuImg}
             onClick={() => handleNavigate('#advanced-manufacturing')}
@@ -507,14 +517,14 @@ export default function App() {
           />
           <FacilityCard 
             title="Electrical" 
-            items={["Sand Casting Setup", "Pit Furnaces", "Pattern Making", "Molding Tools"]}
+            items={["Electrical Circuits", "Stair Case Wiring", "Voltage & Current Measurement", "Deal with Electrical Components"]}
             imageText="Casting Lab"
             image={electricalImg}
             onClick={() => handleNavigate('#electrical')}
           />
         <FacilityCard 
             title="Electronics" 
-            items={["Sand Casting Setup", "Pit Furnaces", "Pattern Making", "Molding Tools"]}
+            items={["Electronic Circuits", "Soldering  & Desoldering", "Arduino Programming", "PCB Preparation"]}
             imageText="Casting Lab"
             image={electronicsImg}
             onClick={() => handleNavigate('#electronics')}
@@ -522,7 +532,7 @@ export default function App() {
 
           <FacilityCard 
             title="DIY" 
-            items={["Sand Casting Setup", "Pit Furnaces", "Pattern Making", "Molding Tools"]}
+            items={["Laser Cutting", "AxiDraw", "Fabrication of Casing", "Motorised Moving Platform"]}
             imageText="Casting Lab"
             image={diyImg}
             onClick={() => handleNavigate('#diy')}
@@ -543,7 +553,7 @@ export default function App() {
                 { step: "01", text: "Compulsory safety orientation module." },
                 { step: "02", text: "Hand-tool proficiency assessment." },
                 { step: "03", text: "Supervised machine operation training." },
-                { step: "04", text: "Advanced CNC programming certification." }
+                { step: "04", text: "Advanced CNC programming." }
               ].map((item) => (
                 <div key={item.step} className="flex items-start space-x-3 lg:space-x-4">
                   <span className="text-orange-500 font-mono font-bold text-lg lg:text-xl">{item.step}</span>
@@ -551,9 +561,14 @@ export default function App() {
                 </div>
               ))}
             </div>
-            <button className="mt-8 lg:mt-10 px-4 lg:px-6 py-2 lg:py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-colors text-sm lg:text-base">
-              Download Safety Manual
-            </button>
+            <a 
+              href={safetyManualPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block w-max mt-8 lg:mt-10 px-4 lg:px-6 py-2 lg:py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-colors text-sm lg:text-base"
+            >
+              Open Safety Manual
+            </a>
           </div>
           <div className="bg-orange-600 p-6 lg:p-8 xl:p-12 lg:w-1/2 flex flex-col justify-center">
             <h3 className="text-xl lg:text-xl xl:text-2xl font-bold text-white mb-6">Mandatory Safety Gear</h3>
@@ -580,7 +595,7 @@ export default function App() {
               </div>
               <div>
                 <h4 className="text-left font-bold text-gray-900 text-base lg:text-base xl:text-lg">Our Location</h4>
-                <p className="text-gray-600 text-sm lg:text-base">Central Workshop (Maker Space), IIT Hyderabad Campus, Kandi, Sangareddy, Telangana - 502284</p>
+                <p className="text-left text-gray-600 text-sm lg:text-base">Central Workshop (Maker Space), IIT Hyderabad Campus, Kandi, Sangareddy, Telangana - 502284</p>
               </div>
             </div>
             <div className="flex items-start space-x-4 lg:space-x-5">
@@ -589,7 +604,7 @@ export default function App() {
               </div>
               <div>
                 <h4 className="text-left font-bold text-gray-900 text-base lg:text-base xl:text-lg">Email Address</h4>
-                <p className="text-gray-600 text-sm lg:text-base">office.cw@iith.ac.in</p>
+                <p className="text-left text-gray-600 text-sm lg:text-base">office.cw@iith.ac.in</p>
               </div>
             </div>
             <div className="flex items-start space-x-4 lg:space-x-5">
@@ -598,7 +613,7 @@ export default function App() {
               </div>
               <div>
                 <h4 className="text-left font-bold text-gray-900 text-base lg:text-base xl:text-lg">Phone</h4>
-                <p className="text-gray-600 text-sm lg:text-base">+91 83 3103 6457</p>
+                <p className="text-left text-gray-600 text-sm lg:text-base">+91 83 3103 6457</p>
               </div>
             </div>
             <div className="flex items-start space-x-4 lg:space-x-5">
@@ -607,7 +622,7 @@ export default function App() {
               </div>
               <div>
                 <h4 className="text-left font-bold text-gray-900 text-base lg:text-base xl:text-lg">Working Hours</h4>
-                <p className="text-gray-600 text-sm lg:text-base">Monday - Friday : 09:00 AM - 05:30 PM</p>
+                <p className="text-left text-gray-600 text-sm lg:text-base">Monday - Friday : 09:00 AM - 05:30 PM</p>
               </div>
             </div>
           </div>
@@ -663,8 +678,37 @@ export default function App() {
         .animate-spin-slow {
           animation: spin-slow 8s linear infinite;
         }
+        @keyframes border-glow {
+          0%, 100% {
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 rgba(234, 88, 12, 0);
+          }
+          50% {
+            border-color: rgba(234, 88, 12, 0.8);
+            box-shadow: 0 0 15px rgba(234, 88, 12, 0.5), inset 0 0 10px rgba(234, 88, 12, 0.2);
+          }
+        }
+        .animate-border-glow {
+          animation: border-glow 3s infinite ease-in-out;
+        }
+        .animate-border-glow:hover {
+          animation: none;
+          border-color: rgba(234, 88, 12, 0.9);
+          box-shadow: 0 0 20px rgba(234, 88, 12, 0.6), inset 0 0 15px rgba(234, 88, 12, 0.3);
+        }
         html {
           scroll-behavior: smooth;
+        }
+        /* Firefox-specific fix to prevent hero content overlapping the navbar */
+        @supports (-moz-appearance: none) {
+          .hero-header {
+            padding-top: 4rem; /* from 3rem (pt-12) */
+          }
+          @media (min-width: 768px) {
+            .hero-header {
+              padding-top: 5rem; /* from 4rem (md:pt-16) */
+            }
+          }
         }
       `}</style>
     </div>

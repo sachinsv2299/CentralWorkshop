@@ -1,46 +1,93 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, X, Maximize2, Image as ImageIcon } from 'lucide-react';
+import training1 from '../img/gallery/trainingcr2.jpg';
+import training2 from '../img/gallery/trainingcr3.jpg';
+import training3 from '../img/gallery/trainingcr4.jpg';
+import training4 from '../img/gallery/trainingcr5.jpg';
+import workshop1 from '../img/gallery/workshop.png';
+import workshop2 from '../img/gallery/workshop2.jpg';
+import workshop3 from '../img/gallery/workshop3.png';
+import workshop4 from '../img/gallery/workshop4.jpg';
+import workshop5 from '../img/gallery/workshop5.jpg';
+import workshop6 from '../img/gallery/workshop6.jpg';
+
+import achievements1 from '../img/gallery/Achievement1.jpeg';
+
+
 
 const galleryData = [
+  
   {
     id: 1,
-    title: 'Advanced CNC Machining',
-    category: 'Workshop',
-    img: 'https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&w=800&q=80'
+    title: 'CISR Sponsored training program for ITI students',
+    category: 'Training',
+    img: training1
   },
   {
     id: 2,
-    title: 'Precision Welding',
+    title: 'CISR Sponsored training program for ITI students',
     category: 'Training',
-    img: 'https://images.unsplash.com/photo-1504917595217-d4ce5ee91c93?auto=format&fit=crop&w=800&q=80'
+    img: training2
   },
   {
     id: 3,
-    title: 'Robotics Workshop',
-    category: 'Events',
-    img: 'https://images.unsplash.com/photo-1561744161-5586603a11b6?auto=format&fit=crop&w=800&q=80'
+    title: 'CISR Sponsored training program for ITI students',
+    category: 'Training',
+    img: training3
   },
   {
     id: 4,
-    title: '3D Printing Lab',
-    category: 'Workshop',
-    img: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80'
+    title: 'CISR Sponsored training program for ITI students',
+    category: 'Training',
+    img: training4
   },
   {
     id: 5,
-    title: 'Safety Orientation',
-    category: 'Training',
-    img: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80'
+    title: 'Student Achievements',
+    category: 'Achievements',
+    img: achievements1
   },
   {
     id: 6,
-    title: 'Industrial Lathe',
+    title: 'Workshop',
     category: 'Workshop',
-    img: 'https://images.unsplash.com/photo-1610415516942-019688478d1f?auto=format&fit=crop&w=800&q=80'
+    img: workshop1
   },
+  {
+    id: 7,
+    title: 'Workshop',
+    category: 'Workshop',
+    img: workshop2
+  },
+  {
+    id: 8,
+    title: 'Workshop',
+    category: 'Workshop',
+    img: workshop3
+  },
+
+  {
+    id: 9,
+    title: 'Workshop',
+    category: 'Workshop',
+    img: workshop4
+  },
+  {
+    id: 10,
+    title: 'Workshop',
+    category: 'Workshop',
+    img: workshop5
+  },
+  {
+    id: 11,
+    title: 'Workshop',
+    category: 'Workshop',
+    img: workshop6
+  }
+
 ];
 
-const categories = ['All', 'Workshop', 'Training', 'Events'];
+const categories = ['All', 'Workshop', 'Training', 'Achievements', 'Events'];
 
 const Gallery = ({ onBack, Navbar, Footer, onNavigate }) => {
   const [filter, setFilter] = useState('All');
@@ -111,6 +158,8 @@ const Gallery = ({ onBack, Navbar, Footer, onNavigate }) => {
                 <img 
                   src={item.img} 
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 

@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, Zap, Cpu, Gauge, ChevronsDown } from 'lucide-react';
+import { ArrowLeft, Zap, ChevronsDown } from 'lucide-react';
+import clampMeterImg from '../img/machine/clamp.jpg';
+import multimeterImg from '../img/machine/multimeter.jpg';
+import tachometerImg from '../img/machine/tacho.jpg';
 
 const equipmentData = [
   {
@@ -12,7 +15,7 @@ const equipmentData = [
       'True-RMS measurements for accuracy',
       'Slim, ergonomic design for easy handling'
     ],
-    icon: Zap,
+    image: clampMeterImg,
     imageAlt: 'Fluke 323 Clamp Meter'
   },
   {
@@ -25,7 +28,7 @@ const equipmentData = [
       'Resistance and Continuity testing',
       'Diode and Capacitance testing support'
     ],
-    icon: Cpu,
+    image: multimeterImg,
     imageAlt: 'Digital Multimeter Setup'
   },
   {
@@ -38,7 +41,7 @@ const equipmentData = [
       'Surface Speed measurement capabilities',
       'Memory storage for last/max/min values'
     ],
-    icon: Gauge,
+    image: tachometerImg,
     imageAlt: 'Contact and Photo Tachometer'
   }
 ];
@@ -108,7 +111,6 @@ const Electrical = ({ onBack, Navbar, Footer, onNavigate }) => {
             </div>
             
             {equipmentData.map((item, index) => {
-              const Icon = item.icon;
               const isEven = index % 2 === 0;
 
               return (
@@ -117,9 +119,9 @@ const Electrical = ({ onBack, Navbar, Footer, onNavigate }) => {
                     {/* Visual Section */}
                     <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                       <div className="bg-slate-50 rounded-2xl h-80 flex flex-col items-center justify-center p-8 border border-slate-100 hover:border-orange-200 transition-all group">
-                        <div className="relative">
+                        <div className="relative flex items-center justify-center w-full h-32">
                            <div className="absolute -inset-4 bg-orange-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                           <Icon className="w-24 h-24 text-orange-600 relative z-10" />
+                           <img src={item.image} alt={item.imageAlt} className="max-w-full max-h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         <p className="mt-6 text-slate-400 font-medium uppercase tracking-widest text-xs">Diagnostic Tool</p>
                         <p className="text-slate-800 font-bold text-center mt-1">{item.imageAlt}</p>

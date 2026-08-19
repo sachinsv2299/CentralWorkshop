@@ -1,60 +1,62 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, Zap, Layers, Printer, ChevronsDown } from 'lucide-react';
+import lasercutting from '../img/machine/diylasercutting.png';
+import move from '../img/machine/diymovingplatform.png';
+import pen from '../img/machine/diyaxiledraw.png';
+import boxes from '../img/machine/diyvaccumforming.png';
 
 const machinesData = [
   {
     id: 1,
-    name: '5 Axis CNC',
-    description: 'Make BFW, Model Swift MC-500 5Ax. Our state-of-the-art 5-axis CNC machine enables highly precise machining of complex components, supporting intricate multi-sided operations.',
+    name: 'Laser Cutting Machine',
+    description: 'Make SIL, Model ENG-45. A high-precision tool for cutting and engraving various materials with speed and accuracy, bridging digital art and physical engineering.',
     features: [
-      'Spindle: HSK A63, 15000 rpm', 
-      'Traverse X/Y/Z, mm: 630 / 630 / 500', 
-      'A Axis: -120 to +30 degree | C Axis: 360 degree', 
-      'ATC: 30 tools (Max tool dia/len: 75(125*)/300 mm)',
-      'Safe load capacity: 250 kg'
+      'Bed size (LxB), mm: 600 x 500',
+      'Laser power, W: 100',
+      'File formats supported: DXF'
     ],
-    icon: Layers,
-    imageAlt: '5 Axis CNC Machine'
+    image: lasercutting,
+    imageAlt: 'Laser Cutting Machine'
   },
   {
     id: 2,
-    name: 'VMC',
-    description: 'Make BFW, Model BMV60+ TC24. A versatile Vertical Machining Center designed for heavy-duty and high-precision milling operations.',
+    name: 'Motorised Moving Platform',
+    description: 'Make Unimat, Model UNI-CNC-SET. A versatile 4-axis platform driven by stepper motors, providing a robust Real-Time Environment (RTE) for CNC software applications.',
     features: [
-      'Spindle: BT40, 6000 rpm',
-      'Traverse X/Y/Z, mm: 1050 / 610 / 610',
-      'Table Clamping Area: 1250 x 600 mm',
-      'Safe load capacity: 1200 kg',
-      'ATC: 24 tools (Max tool dia/len: 75(140*)/250 mm)'
+      'No. of axes: 4',
+      'Drive: Stepper motors',
+      'Sandy box provides RTE for CNC s/w'
     ],
-    icon: Zap,
-    imageAlt: 'VMC Machine'
+    image: move,
+    imageAlt: 'Motorised Moving Platform'
   },
   {
     id: 3,
-    name: 'CNC Lathe',
-    description: 'Make HMT, Model Praga PTC-600. A high-performance CNC Lathe designed for precise turning operations and excellent repeatability.',
+    name: 'Axidraw',
+    description: 'Make Axidraw, Model V3. Specialized for drawing and circuit design. This versatile machine can use standard writing instruments for automated plotting.',
     features: [
-      'Swing over bed: dia 400 mm | Swing over cross slide: 225 mm',
-      'Cross travel (X) / Longitudinal travel (Z): 225 / 630 mm',
-      'Spindle revolution: 40-4000 rpm',
-      'Turret: 8 tools',
-      'Controller: FANUC Oi-MATE'
+      'For drawing & circuit design',
+      'Can use normal pens/pencils'
     ],
-    icon: Zap,
-    imageAlt: 'CNC Lathe Machine'
+    image: pen,
+    imageAlt: 'Axidraw Plotter'
   },
-  // {
-  //   id: 4,
-  //   name: '3D Printing Lab',
-  //   description: 'Modern 3D printing facility supporting FDM and SLA technologies. Rapid prototyping for design validation, functional testing, and small-batch manufacturing. Multiple material options including resin, ABS, and PETG for diverse applications.',
-  //   features: ['FDM & SLA technology', 'Multiple material options', 'Build size up to 300x300x400mm', 'Layer resolution 0.1-0.2mm'],
-  //   icon: Printer,
-  //   imageAlt: '3D Printer'
-  // }
+  {
+    id: 4,
+    name: 'Desktop Vacuum Forming Machine',
+    description: 'Make Formbox, Model -FBA180123EU. An accessible machine for shaping plastics according to mold shapes, ideal for rapid prototyping and packaging.',
+    features: [
+      'Forming area (LxB), mm: 200 x 200',
+      'Drawing depth, mm: 130',
+      'Temperature, deg C: 130-340',
+      'Sheet thickness, mm: 0.5-1.5'
+    ],
+    image: boxes,
+    imageAlt: 'Vacuum Forming Machine'
+  }
 ];
 
-const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
+const DIY = ({ onBack, Navbar, Footer, onNavigate }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -79,61 +81,68 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
           {/* Page Header with Background */}
           <div className="mb-16 rounded-2xl bg-gradient-to-r from-orange-100 via-orange-50 to-white p-6 sm:p-8 lg:p-12 shadow-xl border border-orange-200">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 mb-4">
-              DIY
+              Do-It-Yourself
             </h1>
-            <p className="text-sm lg:text-base text-slate-600 max-w-4xl font-semi-medium">
-              The CNC Hub is the advanced manufacturing wing of the Central Workshop, representing the pinnacle of modern industrial automation. This facility is designed to bridge the gap between digital design and high-precision physical production, offering students and researchers access to state-of-the-art subtractive manufacturing technology.
+            <h2 className="text-xl font-bold text-orange-800 mb-4">DIY Lab (MakerSpace)</h2>
+            <p className="text-sm lg:text-base text-slate-600 max-w-4xl font-semi-medium leading-relaxed">
+              The DIY Lab is the creative heartbeat of the Central Workshop. Designed as an open-access collaborative space, it empowers students, hobbyists, and aspiring entrepreneurs to move from "thinking" to "making." Unlike traditional specialized shops, the DIY Lab is built for multidisciplinary exploration, providing the tools and freedom to experiment without the constraints of formal lab coursework.
             </p>
             <div className="w-20 h-1.5 bg-orange-500 mt-8 rounded-full mx-auto"></div>
             <div className="mt-6 flex items-center justify-center text-sm text-slate-500 space-x-2">
               <ChevronsDown className="w-5 h-5 text-orange-500 animate-bounce" />
-              <span>Scroll down to explore machines</span>
+              <span>Scroll down to explore facilities & tools</span>
             </div>
           </div>
 
           {/* Machines List */}
           <div className="bg-white p-6 sm:p-8 lg:p-12 rounded-3xl shadow-lg">
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-slate-900 border-l-4 border-orange-500 pl-4">Key Facilities & Tools</h2>
+              <p className="mt-2 text-slate-600">The lab is stocked with "user-friendly" equipment that bridges the gap between digital art and physical engineering.</p>
+            </div>
+
             {machinesData.map((machine, index) => {
-              const Icon = machine.icon;
               const isEven = index % 2 === 0;
 
               return (
                 <div key={machine.id}>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                  {/* Image/Visual Section */}
-                  <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                    <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl h-72 lg:h-64 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-center px-6">
-                        <Icon className="w-20 h-20 text-orange-600 mx-auto mb-3" />
-                        <p className="text-gray-600 font-semibold">{machine.imageAlt}</p>
+                    {/* Image/Visual Section */}
+                    <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+                      <div className="bg-slate-50 rounded-2xl h-80 flex flex-col items-center justify-center p-8 border border-slate-100 hover:border-orange-200 transition-all group">
+                        <div className="relative flex items-center justify-center w-full h-32">
+                           <div className="absolute -inset-4 bg-orange-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                           <img src={machine.image} alt={machine.imageAlt} className="max-w-full max-h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300" />
+                        </div>
+                        <p className="mt-6 text-slate-400 font-medium uppercase tracking-widest text-xs">Equipment</p>
+                        <p className="text-slate-800 font-bold text-center mt-1">{machine.imageAlt}</p>
+                      </div>
+                    </div>
+
+                    {/* Content Section */}
+                    <div className={`${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                      <h2 className="text-3xl lg:text-4xl font-bold text-black mb-4">{machine.name}</h2>
+                      <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                        {machine.description}
+                      </p>
+                      
+                      {/* Features List */}
+                      <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-orange-600">
+                        <h3 className="text-xl font-bold text-gray-900 mb-4">Specifications</h3>
+                        <ul className="space-y-3">
+                          {machine.features.map((feature, idx) => (
+                            <li key={idx} className="flex items-start space-x-3">
+                              <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
+                              <span className="text-gray-700 font-medium">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>
 
-                  {/* Content Section */}
-                  <div className={`${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
-                    <h2 className="text-3xl lg:text-4xl font-bold text-black mb-4">{machine.name}</h2>
-                    <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                      {machine.description}
-                    </p>
-                    
-                    {/* Features List */}
-                    <div className="bg-white rounded-xl shadow-md p-5 border-l-4 border-orange-600">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">Key Features</h3>
-                      <ul className="space-y-3">
-                        {machine.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-orange-600 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-gray-700">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  </div>
-
                   {index < machinesData.length - 1 && (
-                    <hr className="my-10 border-t-2 border-orange-500" />
+                    <hr className="my-16 border-t-2 border-orange-100" />
                   )}
                 </div>
               );
@@ -142,24 +151,24 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
 
           {/* Booking Section */}
           <div className="mt-20 bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl shadow-lg p-6 sm:p-8 lg:p-12 text-white">
-            <h3 className="text-3xl font-bold mb-4">Ready to Use These Machines?</h3>
+            <h3 className="text-3xl font-bold mb-4">Ready to Start Your DIY Project?</h3>
             <p className="text-orange-100 mb-8 text-lg">
-              Book a training session or reserve equipment time for your projects.
+              The MakerSpace is open for creative exploration. Book equipment or schedule a guidance session with our staff.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a
                 href="https://cws.iith.ac.in/form/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 bg-white text-orange-600 font-bold rounded-xl hover:bg-gray-100 transition-colors text-center"
+                className="px-8 py-4 bg-white text-orange-600 font-bold rounded-xl hover:bg-gray-100 transition-colors text-center shadow-lg"
               >
-                Book a Machine
+                Reserve MakerSpace Tools
               </a>
               <a
                 href="mailto:office.cw@iith.ac.in"
                 className="px-8 py-4 bg-white/20 text-white font-bold rounded-xl hover:bg-white/30 transition-colors text-center border border-white/20"
               >
-                Contact for Training
+                Inquire About DIY Training
               </a>
             </div>
           </div>
@@ -178,4 +187,4 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
   );
 };
 
-export default AdvancedManu;
+export default DIY;

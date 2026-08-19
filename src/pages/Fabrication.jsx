@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, Zap, Layers, Printer, ChevronsDown } from 'lucide-react';
+import { ArrowLeft, ChevronsDown } from 'lucide-react';
+import tig from '../img/machine/tig.jpg';
+import plasma from '../img/machine/PlasmaCuttingMachine.png';
+import mig from '../img/machine/MIGWeldingMachine.png';
+import gas from '../img/machine/GasWelding.png';
+import arc from '../img/machine/ArcWelding.jpg';
+import table from '../img/machine/weldigtable.jpg';
 
 const machinesData = [
   {
@@ -14,7 +20,7 @@ const machinesData = [
       'Electrode holder: 1.6 / 2.4 / 3.2 / 4.0 mm',
       'Ceramic nozzles: 6.5 / 8 / 11 mm'
     ],
-    icon: Layers,
+    image: tig,
     imageAlt: 'TIG Welding Machine'
   },
   {
@@ -28,7 +34,7 @@ const machinesData = [
       'Torch cooling: Water',
       'Wire diameter: 0.8 / 1 / 1.2 / 1.6 mm'
     ],
-    icon: Zap,
+    image: mig,
     imageAlt: 'MIG Welding Machine'
   },
   {
@@ -43,7 +49,7 @@ const machinesData = [
       'Max Current: 85 Amp',
       'CNC programmable'
     ],
-    icon: Zap,
+    image: plasma,
     imageAlt: 'Plasma Cutting Machine'
   },
   {
@@ -57,7 +63,7 @@ const machinesData = [
       'Voltage max: 80 Volts',
       'Electrode dia: 1.6-6.0 mm'
     ],
-    icon: Layers,
+    image: arc,
     imageAlt: 'Arc Welding Machine'
   },
   {
@@ -69,7 +75,7 @@ const machinesData = [
       'Gas cutting',
       'Brazing'
     ],
-    icon: Zap,
+    image: gas,
     imageAlt: 'Gas Welding Setup'
   },
   {
@@ -84,12 +90,12 @@ const machinesData = [
       'Rotary positioner to rotate table (360 degree)',
       'FIXTO clamp set for workpiece'
     ],
-    icon: Layers,
+    image: table,
     imageAlt: 'Welding Table'
   }
 ];
 
-const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
+const Fabrication = ({ onBack, Navbar, Footer, onNavigate }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -130,7 +136,6 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
           {/* Machines List */}
           <div className="bg-white p-6 sm:p-8 lg:p-12 rounded-3xl shadow-lg">
             {machinesData.map((machine, index) => {
-              const Icon = machine.icon;
               const isEven = index % 2 === 0;
 
               return (
@@ -138,11 +143,13 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                   {/* Image/Visual Section */}
                   <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                    <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl h-72 lg:h-64 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-center px-6">
-                        <Icon className="w-20 h-20 text-orange-600 mx-auto mb-3" />
-                        <p className="text-gray-600 font-semibold">{machine.imageAlt}</p>
+                    <div className="bg-slate-50 rounded-2xl h-80 flex flex-col items-center justify-center p-8 border border-slate-100 hover:border-orange-200 transition-all group">
+                      <div className="relative flex items-center justify-center w-full h-32">
+                         <div className="absolute -inset-4 bg-orange-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         <img src={machine.image} alt={machine.imageAlt} className="max-w-full max-h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300" />
                       </div>
+                      <p className="mt-6 text-slate-400 font-medium uppercase tracking-widest text-xs">Equipment</p>
+                      <p className="text-slate-800 font-bold text-center mt-1">{machine.imageAlt}</p>
                     </div>
                   </div>
 
@@ -214,4 +221,4 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
   );
 };
 
-export default AdvancedManu;
+export default Fabrication;

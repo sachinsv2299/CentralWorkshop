@@ -1,64 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Calendar, MapPin, Clock, ArrowRight, CheckCircle } from 'lucide-react';
+import event1 from '../img/events/event1.png';
 
 const eventsData = [
   {
     id: 1,
-    title: 'Advanced 5-Axis CNC Workshop',
-    date: '2026-05-15T09:00:00',
-    duration: '4 Hours',
+    title: 'Skill Development Program for Staff 2024',
+    date: '2024-07-22T09:00:00',
+    duration: '6 Days',
     location: 'Central Workshop, Maker Space',
-    description: 'Join us for a comprehensive hands-on session on 5-Axis CNC machining. Learn advanced toolpath generation and intricate multi-sided operations from industry experts.',
-    image: 'https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&w=800&q=80',
-    regLink: 'https://forms.gle/placeholder',
+    description: 'Skill Development Program for Staff 2024',
+    image: event1,
+    // regLink: 'https://forms.gle/placeholder',
   },
-  {
-    id: 2,
-    title: 'Safety Protocol & Tools Orientation',
-    date: '2025-10-05T14:00:00',
-    duration: '2 Hours',
-    location: 'Main Auditorium & Workshop',
-    description: 'Mandatory safety orientation for all new students. Covers basic hand tools handling, emergency procedures, and central workshop floor rules.',
-    image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 3,
-    title: 'TIG Welding Masterclass',
-    date: '2023-08-20T10:00:00',
-    duration: '3 Hours',
-    location: 'Fabrication & Welding Wing',
-    description: 'An intensive masterclass on TIG welding techniques, focusing on complex aluminum and stainless steel joints and gas flow regulation.',
-    image: 'https://images.unsplash.com/photo-1504917595217-d4ce5ee91c93?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 4,
-    title: '3D Printing Hackathon',
-    date: '2023-11-10T09:00:00',
-    duration: '48 Hours',
-    location: '3D Printing Lab',
-    description: 'A 48-hour challenge where student teams designed and rapidly prototyped functional mechanical assemblies using FDM and SLA technologies.',
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 5,
-    title: 'Introduction to Robotics Fabrication',
-    date: '2026-02-10T10:00:00',
-    duration: '6 Hours',
-    location: 'Electronics & Fabrication Lab',
-    description: 'A beginner-friendly workshop on building basic robotic frames using laser cutting and 3D printing techniques. Open to all branches.',
-    image: 'https://images.unsplash.com/photo-1561744161-5586603a11b6?auto=format&fit=crop&w=800&q=80',
-    regLink: 'https://forms.gle/placeholder',
-  },
-  {
-    id: 6,
-    title: 'Advanced Hydraulics Training',
-    date: '2026-03-22T13:30:00',
-    duration: '3 Hours',
-    location: 'Hydraulics Wing',
-    description: 'Learn the fundamentals of fluid power, system design, and maintenance of industrial hydraulic machinery. Certification provided upon completion.',
-    image: 'https://images.unsplash.com/photo-1610415516942-019688478d1f?auto=format&fit=crop&w=800&q=80',
-    regLink: 'https://forms.gle/placeholder',
-  }
+  
 ];
 
 const Events = ({ onBack, Navbar, Footer, onNavigate }) => {
@@ -87,7 +42,7 @@ const Events = ({ onBack, Navbar, Footer, onNavigate }) => {
       <div className={`bg-white rounded-3xl overflow-hidden shadow-lg transition-all duration-300 group flex flex-col ${isPast ? 'grayscale-[30%]' : 'hover:shadow-xl hover:-translate-y-1'}`}>
         <div className="relative h-48 overflow-hidden">
           <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10"></div>
-          <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src={event.image} alt={event.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
           
           {/* Date Badge */}
           <div className={`absolute top-4 left-4 z-20 shadow-lg backdrop-blur-md rounded-xl p-2 text-center min-w-[3.5rem] border ${isPast ? 'bg-slate-900/80 border-slate-700 text-slate-300' : 'bg-white/90 border-white/20 text-slate-900'}`}>

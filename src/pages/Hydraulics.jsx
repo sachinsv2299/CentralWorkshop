@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, Zap, Droplets, Wind, Printer, ChevronsDown } from 'lucide-react';
+import { ArrowLeft, ChevronsDown } from 'lucide-react';
+import machineImg from '../img/machine/Hydraulics.png';
 
 const machinesData = [
   {
@@ -13,12 +14,12 @@ const machinesData = [
       'Hydraulics: Pressing machine, bending machine',
       'Focus on electro-pneumatics and industrial automation'
     ],
-    icon: Wind, // Changed to Wind to represent Pneumatics
+    image: machineImg,
     imageAlt: 'FESTO Pneumatics & Hydraulics Setup'
   }
 ];
 
-const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
+const Hydraulics = ({ onBack, Navbar, Footer, onNavigate }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -58,7 +59,6 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
           {/* Machines List */}
           <div className="bg-white p-6 sm:p-8 lg:p-12 rounded-3xl shadow-lg">
             {machinesData.map((machine, index) => {
-              const Icon = machine.icon;
               const isEven = index % 2 === 0;
 
               return (
@@ -66,12 +66,13 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                   {/* Image/Visual Section */}
                   <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                    <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl h-72 lg:h-80 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                      {/* You can replace this placeholder with the actual image_29c0e1.png when ready */}
-                      <div className="text-center px-6">
-                        <Icon className="w-20 h-20 text-orange-600 mx-auto mb-3" />
-                        <p className="text-gray-600 font-semibold">{machine.imageAlt}</p>
+                    <div className="bg-slate-50 rounded-2xl h-80 flex flex-col items-center justify-center p-8 border border-slate-100 hover:border-orange-200 transition-all group">
+                      <div className="relative flex items-center justify-center w-full h-32">
+                         <div className="absolute -inset-4 bg-orange-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         <img src={machine.image} alt={machine.imageAlt} className="max-w-full max-h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300" />
                       </div>
+                      <p className="mt-6 text-slate-400 font-medium uppercase tracking-widest text-xs">Equipment</p>
+                      <p className="text-slate-800 font-bold text-center mt-1">{machine.imageAlt}</p>
                     </div>
                   </div>
 
@@ -143,4 +144,4 @@ const AdvancedManu = ({ onBack, Navbar, Footer, onNavigate }) => {
   );
 };
 
-export default AdvancedManu;
+export default Hydraulics;

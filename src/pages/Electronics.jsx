@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, Cpu, ChevronsDown } from 'lucide-react';
-import funcGenImg from '../img/functiongenerator.jpg';
-import oscilloscopeImg from '../img/oscilloscope.png';
-import multiPowerSupplyImg from '../img/multipower.png';
-import powerSupplyImg from '../img/powersupply.png';
-import solderingImg from '../img/soldering.png';
-import desolderingImg from '../img/desoldering.png';
+import funcGenImg from '../img/machine/functiongenerator.jpg';
+import oscilloscopeImg from '../img/machine/oscilloscope.png';
+import multiPowerSupplyImg from '../img/machine/multipower.png';
+import powerSupplyImg from '../img/machine/powersupply.png';
+import solderingImg from '../img/machine/soldering.png';
+import desolderingImg from '../img/machine/desoldering.png';
 
 const equipmentData = [
   {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, Mail, ExternalLink, Users } from 'lucide-react';
-import anirbanImg from '../img/AnirbanNaskar.png';
+import GangadharanRajuImg from '../img/GangadharanRaju.png';
 import sto1Img from '../img/sto1.png';
 import ajithImg from '../img/jts_ajith1.png';
 import jbImg from '../img/jts_jb1.png';
@@ -18,12 +18,12 @@ import drbImg from '../img/D_rb1.png';
 
 const leadershipData = [
   {
-    name: 'Anirban Naskar',
+    name: 'Gangadharan Raju',
     role: 'Faculty-in-Charge',
-    subRole: 'Assistant Professor',
-    email: 'anaskar@mae.iith.ac.in',
-    img: anirbanImg,
-    link: 'https://www.iith.ac.in/mae/anaskar/'
+    subRole: 'Professor',
+    email: 'gangadharanr@iith.ac.in',
+    img: GangadharanRajuImg,
+    link: 'https://people.iith.ac.in/gangadharanr/'
   },
   {
     name: 'Malla Seetarami Naidu',

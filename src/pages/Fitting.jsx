@@ -1,5 +1,14 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, Hammer, Drill, Scissors, Settings, ChevronsDown } from 'lucide-react';
+import { ArrowLeft, Hammer, Settings, ChevronsDown } from 'lucide-react';
+import bench from '../img/machine/BenchDrillingMachine.png';
+import bandsaw from '../img/machine/BandSaw.png';
+import power from '../img/machine/PowerBandSaw.png';
+import drilling from '../img/machine/DrillingTappingMachine.png';
+import shaper from '../img/machine/ShaperMachine.png';
+
+
+
+
 
 const machinesData = [
   {
@@ -12,7 +21,7 @@ const machinesData = [
       'Wheel Dia ID: 31.75 mm',
       'Wheel thickness: 25 mm'
     ],
-    icon: Settings,
+    image: bench,
     imageAlt: 'Bench Grinder Machine'
   },
   {
@@ -25,7 +34,7 @@ const machinesData = [
       'Cutting capacity: 32 mm (Jig Saw)',
       'Belt width: 254 mm (Band Saw)'
     ],
-    icon: Scissors,
+    image: bandsaw,
     imageAlt: 'Industrial Sawing Machines'
   },
   {
@@ -38,7 +47,7 @@ const machinesData = [
       'Speed: 400 rpm',
       'Blade specs: 16" x 1.25"'
     ],
-    icon: Settings,
+    image: bandsaw,
     imageAlt: 'Power Hack Saw'
   },
   {
@@ -52,7 +61,7 @@ const machinesData = [
       'Cylindrical capacity: 185 mm dia',
       'Spindle revolution: 40-4000 rpm'
     ],
-    icon: Scissors,
+    image: power,
     imageAlt: 'Power Band Saw'
   },
   {
@@ -65,7 +74,7 @@ const machinesData = [
       'EIFCO Bench Drill: Max drill size 12mm dia',
       'Spindle travel: 140 mm'
     ],
-    icon: Drill,
+    image: drilling,
     imageAlt: 'Drilling and Tapping Setup'
   },
   {
@@ -78,7 +87,7 @@ const machinesData = [
       'Vertical travel of table: 305 mm',
       'Longitudinal travel of table: 405 mm'
     ],
-    icon: Settings,
+    image: shaper,
     imageAlt: 'Shaper Machine'
   }
 ];
@@ -139,7 +148,6 @@ const FittingShop = ({ onBack, Navbar, Footer, onNavigate }) => {
           {/* Machines List */}
           <div className="bg-white p-6 sm:p-8 lg:p-12 rounded-3xl shadow-lg">
             {machinesData.map((machine, index) => {
-              const Icon = machine.icon;
               const isEven = index % 2 === 0;
 
               return (
@@ -147,12 +155,13 @@ const FittingShop = ({ onBack, Navbar, Footer, onNavigate }) => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     {/* Image/Visual Section */}
                     <div className={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                      <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl h-72 lg:h-80 flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                        <div className="text-center px-6">
-                          <Icon className="w-16 h-16 text-orange-600 mx-auto mb-3" />
-                          <p className="text-gray-600 font-bold uppercase tracking-wider text-xs mb-1">Industrial Equipment</p>
-                          <p className="text-gray-800 font-semibold">{machine.imageAlt}</p>
+                      <div className="bg-slate-50 rounded-2xl h-80 flex flex-col items-center justify-center p-8 border border-slate-100 hover:border-orange-200 transition-all group">
+                        <div className="relative flex items-center justify-center w-full h-32">
+                           <div className="absolute -inset-4 bg-orange-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                           <img src={machine.image} alt={machine.imageAlt} className="max-w-full max-h-full object-contain relative z-10 group-hover:scale-110 transition-transform duration-300" />
                         </div>
+                        <p className="mt-6 text-slate-400 font-medium uppercase tracking-widest text-xs">Equipment</p>
+                        <p className="text-slate-800 font-bold text-center mt-1">{machine.imageAlt}</p>
                       </div>
                     </div>
 
